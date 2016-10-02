@@ -1,0 +1,57 @@
+[options]
+
+search_wrap		=	true
+cusor_blink		=	true
+cusor_shape		=	block
+visible_bell		=	true
+audible_bell		=	false
+scrollback_lines	=	1024
+scroll_on_output	=	false
+scroll_on_keystroke	=	true
+browser			=	firefox
+clickable_url		=	true
+
+font			=	FreeMono 11
+allow_bold		=	true
+
+[colors]
+
+background		=	#164d54
+foreground		=	#f3f4f5
+#foreground_bold	=	#
+#foreground_dim		=	#
+cursor			=	#f3f4f5
+#highlight		=	#
+
+# colours
+## black/white
+color0			=	#000000
+color15			=	#f3f4f5
+
+## grey dark/light
+color8			=	#2f343f
+color7			=	#e8e8e7
+
+## red dark/light
+color1			=	#900000
+color9			=	#f3f4f5
+
+## green dark/light
+color2			=	#1dff00
+color10			=	#1dff00
+
+## yellow dark/light
+color3			=	#ffff00
+color11			=	#ffff00
+
+## blue dark/light
+color4			=	#1793d1
+color12			=	#1793d1
+
+## magenta dark/light
+color5			=	#ee82ee
+color13			=	#ee82ee
+
+## cyan dark/light
+color6			=	#00ffff
+color14			=	#00ffff
