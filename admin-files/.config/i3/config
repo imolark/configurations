@@ -1,0 +1,218 @@
+### Please see http://i3wm.org/docs/userguide.html for a complete reference! ###
+
+set $text_one		#2F343F
+set $text_two		#AAAAAB
+set $text_tri		#F3F4F5
+set $bg_color		#E7E8EB
+set $activate		#4084D6
+set $alert_on		#F46067
+set $not_used		#000000
+
+set $workspace1		1:
+set $workspace2		2:
+set $workspace3		3:
+set $workspace4		4:
+set $workspace5		5:
+set $workspace6		6:
+set $workspace7		7:
+set $workspace8		8:
+set $workspace9		9:
+set $workspace0		X:
+
+font pango:DejaVu Sans Mono 10
+font xft:FontAwesome, Ttyp0 Regular 10
+
+## kill focused window ##
+bindsym $mod+Shift+q kill
+
+## change focus ##
+bindsym $mod+h focus left
+bindsym $mod+Left focus left
+bindsym $mod+j focus down
+bindsym $mod+Down focus down
+bindsym $mod+k focus up
+bindsym $mod+Up focus up
+bindsym $mod+l focus right
+bindsym $mod+Right focus right
+
+## move focused window ##
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Right move right
+
+## window direction split orientation ##
+bindsym $mod+c split h
+bindsym $mod+v split v
+
+## fullscreen mode for the focused container ##
+bindsym $mod+f fullscreen toggle
+
+## change urxvt container layout (stacked, tabbed, toggle split) ##
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+## toggle tiling / floating ##
+bindsym $mod+Shift+space floating toggle
+
+## change focus between tiling / floating windows ##
+bindsym $mod+space focus mode_toggle
+
+# prev/next workspace
+bindsym Mod1+Shift+Left workspace prev_on_output
+bindsym Mod1+Shift+Right workspace next_on_output
+
+## workspace keys ##
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+0 workspace $workspace0
+bindsym $mod+Shift+0 move container to workspace $workspace0
+
+## restart, reset, logout i3 keys ##
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+#bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+## set the MOD key ##
+set $mod Mod4
+
+## resize window ##
+bindsym $mod+r mode "resize"
+	mode "resize" {
+	        bindsym h resize shrink width 10 px or 10 ppt
+	        bindsym Left resize shrink width 10 px or 10 ppt
+	        bindsym j resize grow height 10 px or 10 ppt
+	        bindsym Down resize grow height 10 px or 10 ppt
+	        bindsym k resize shrink height 10 px or 10 ppt
+	        bindsym Up resize shrink height 10 px or 10 ppt
+	        bindsym l resize grow width 10 px or 10 ppt
+	        bindsym Right resize grow width 10 px or 10 ppt
+	        bindsym Return mode "default"
+	        bindsym Escape mode "default"
+		      }
+
+## status bar ##
+bar {
+     position top
+     status_command i3blocks -c ~/.config/i3/i3blocks.conf
+     colors {
+             background		$bg_color
+             statusline		$text_one
+             separator		$text_two
+
+## class (taskbar tabs)		border    backgr.   text ##
+        focused_workspace  	$activate $activate $text_tri
+        active_workspace   	$bg_color $bg_color $text_two
+        inactive_workspace 	$bg_color $bg_color $text_two
+        urgent_workspace  	$alert_on $alert_on $text_tri
+            }
+	tray_output none
+    }
+
+## class (window borders)	border    backgr.   text      indicator ##
+	client.focused          $activate $activate $text_tri $not_used
+	client.focused_inactive $text_two $text_two $text_tri $not_used
+	client.unfocused        $bg_color $bg_color $text_two $not_used
+	client.urgent           $alert_on $alert_on $text_tri $not_used
+
+hide_edge_borders both
+focus_follows_mouse no
+for_window [class="^.*"] border pixel 3
+
+## browser setup ##
+for_window [window_role="pop-up"] floating enable;border normal
+for_window [window_role="task_dialog"] floating enable;border normal
+
+for_window [class="feh"]	floating enable
+for_window [class="vlc"]	floating enable
+for_window [class="mplayer"]	floating enable
+
+## Use Mouse+$mod to drag floating windows to their wanted position ##
+floating_modifier $mod
+
+### Program shotcuts ###
+
+## open terminal ##
+bindsym $mod+Escape exec termite
+
+## start dmenu ##
+bindsym $mod+d exec j4-dmenu-desktop --dmenu='dmenu -i -nb "$bg_color" -nf "$text_one" -sb "$activate" -sf "$text_tri" -fn "DejaVu Sans Mono-10"'
+
+## Menus ##
+set  $sysmenu    "System:  [P]oweroff  re[B]oot  [L]ock  logou[T] "
+bindsym $mod+Shift+Escape	mode $sysmenu
+mode $sysmenu 	{
+		 bindsym p	mode $offmenu
+		 bindsym b	mode $rebmenu 
+		 bindsym l	exec ~/.config/i3/i3lock-script, mode "default"
+		 bindsym t	mode $logmenu
+		 bindsym Return	mode "default"
+		 bindsym Escape	mode "default"
+		 bindsym Space	mode "default"
+		 bindsym q	mode "default"
+		}
+
+	## Confirm shutdown ##
+	set  $offmenu    "System: Confirm poweroff? [Y]es [N]o "
+	mode $offmenu 	{
+			 bindsym y	exec shutdown -P now
+			 bindsym Return	mode "default"
+			 bindsym Escape	mode "default"
+			 bindsym Space	mode "default"
+			 bindsym n	mode "default"
+			 bindsym q	mode "default"
+
+			}
+
+	## Confirm Reboot ##
+	set  $rebmenu    "System: Confirm reboot? [Y]es [N]o "
+	mode $rebmenu 	{
+			 bindsym y	exec shutdown -r now
+			 bindsym Return	mode "default"
+			 bindsym Escape	mode "default"
+			 bindsym Space	mode "default"
+			 bindsym n	mode "default"
+			 bindsym q	mode "default"
+			}
+
+	## Confirm Logout ##
+	set  $logmenu    "System: Confirm logout? [Y]es [N]o "
+	mode $logmenu 	{
+			 bindsym y	exec --no-startup-id i3-msg exit, mode "default"
+			 bindsym Return	mode "default"
+			 bindsym Escape	mode "default"
+			 bindsym Space	mode "default"
+			 bindsym n	mode "default"
+			}
+
+### startup with i3wm ###
+exec xbanish &
+exec unclutter &
+exec setxkbmap gb &
+exec timidity -iA &
+exec /usr/local/bin/touchpad_toggle.sh &
+exec dropbox &
+exec orage &
+exec nm-applet &
+exec --no-startup-id xsetroot -solid "#35898b" &
