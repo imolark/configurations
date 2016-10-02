@@ -1,0 +1,6 @@
+SUBSYSTEM=="input", ATTRS{name}=="*A4TECH*", ATTRS{phys}=="*/input0", RUN+="/usr/bin/rm /dev/input/%k"
+
+#SUBSYSTEM=="input", ATTRS{name}=="*A4TECH*", ATTRS{phys}=="*/input0", SYMLINK+="input/event_0"
+
+#SUBSYSTEM=="input", ATTRS{name}=="*A4Tech*", ATTRS{phys}=="*/input1", RUN+="/usr/bin/rm /dev/input/%k"
+
