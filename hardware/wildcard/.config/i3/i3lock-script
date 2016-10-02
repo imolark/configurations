@@ -1,0 +1,5 @@
+scrot /tmp/lock-screen.png
+convert /tmp/lock-screen.png -scale 2% -scale 4000% -resize 1366x768\! /tmp/lock-screen.png
+convert ~/.config/i3/lock-icon.png -scale 66% /tmp/lock-icon.png
+convert /tmp/lock-screen.png /tmp/lock-icon.png -gravity center -composite -matte /tmp/i3lock-background.png
+i3lock -f -i /tmp/i3lock-background.png
