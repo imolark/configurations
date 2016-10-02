@@ -11,7 +11,3 @@
 	
 "pamixer --toggle-mute"
 	m:0x10 + c:121
-
-# toggle trackpad #
-"/usr/local/bin/touchpad_toggle.sh"
-	m:0x40 + c:33
